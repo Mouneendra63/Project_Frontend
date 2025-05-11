@@ -43,7 +43,7 @@ function Reviews() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/reviews')
+    axios.get('https://ekaveera-backend.onrender.com/api/reviews')
       .then((res) => {
   
         const reviews = Array.isArray(res.data) ? res.data : res.data.data;
@@ -84,7 +84,7 @@ function Reviews() {
         comment: formData.comment,
       };
 
-      const response = await axios.post('http://localhost:3000/api/reviews',  payload );
+      const response = await axios.post('https://ekaveera-backend.onrender.com/api/reviews',  payload );
       if (response.status >= 200 && response.status < 300) {
         setAlertComponent(<Success head={"Success"} message={"Your review submitted successfully"} />);
       } else {
