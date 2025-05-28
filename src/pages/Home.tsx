@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useRef ,useState } from 'react';
 import { ChevronRight, Calendar, Clock } from 'lucide-react';
 import axios from 'axios';
 import Success from '../components/success';
@@ -15,7 +15,15 @@ function Home() {
   const [sex, setSex] = useState("");
   const [submittedData, setSubmittedData] = useState<any>(null);
   const [alertComponent, setAlertComponent] = useState<JSX.Element | null>(null);
-
+  const formRef = useRef(null);
+  const handleScrollToForm = () => {
+    if (formRef.current) {
+      formRef.current.scrollIntoView({
+        behavior: 'smooth', // For a smooth scrolling animation
+        block: 'start',    // Scrolls the element to the top of the viewport
+      });
+  }
+};
   const addConcern = () => {
     setmedicalConcern([...medicalConcern, ""]);
   };
@@ -86,7 +94,7 @@ function Home() {
                 Experience the gentle power of natural healing with our expert homeopathic treatments.
                 We focus on treating the whole person, not just the symptoms.
               </p>
-              <button className="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition duration-300 flex items-center">
+              <button onClick={handleScrollToForm} className="bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition duration-300 flex items-center">
                 Book Consultation <ChevronRight className="ml-2 h-5 w-5" />
               </button>
             </div>
@@ -160,7 +168,7 @@ function Home() {
       </section>
 
       {/* Consultation Form */}
-      <section className="py-20 bg-gradient-to-b from-white to-teal-50">
+      <section className="py-20 bg-gradient-to-b from-white to-teal-50" ref={formRef}>
         {alertComponent && (
           <div className="fixed top-5 right-5 z-50">
             {alertComponent}
