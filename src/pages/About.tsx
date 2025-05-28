@@ -67,23 +67,6 @@ function About() {
       </section>
 
       {/* Statistics Section */}
-      {/* <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            {[
-              { number: "15+", label: "Years Experience" },
-              { number: "5,000+", label: "Patients Treated" },
-              { number: "98%", label: "Patient Satisfaction" }
-            ].map((stat, index) => (
-              <div key={index} className="bg-teal-50 p-8 rounded-lg">
-                <div className="text-4xl font-bold text-teal-600 mb-2">{stat.number}</div>
-                <div className="text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-      </section> */}
      <section ref={ref} className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -103,11 +86,13 @@ function About() {
       </div>
     </section>
       {/* Mission Section */}
-      <section className="py-20">
+      <section className="pt-0 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Our Mission</h2>
-            <p className="text-gray-600 text-center max-w-3xl mx-auto">
+          <div className="bg-teal-50 rounded-xl shadow-lg p-8">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Our 
+              <span className="text-teal-600"> Mission</span>
+              </h2>
+            <p className="text-gray-700 text-lg text-center max-w-3xl mx-auto">
               We are committed to providing personalized, natural healthcare solutions that address 
               the root cause of illness rather than just treating symptoms. Our goal is to help 
               our patients achieve optimal health through gentle, effective homeopathic treatments 
