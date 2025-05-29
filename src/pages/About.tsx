@@ -1,11 +1,24 @@
 import React from 'react';
+import CountUp from 'react-countup';
 import { Award, Users, Clock } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
 
 function About() {
+  const { ref, inView } = useInView({
+    triggerOnce: true, // animate only once
+    threshold: 0.7,    // 30% of element visible triggers animation
+  });
+
+  const stats = [
+    { number: 15, suffix: "+", label: "Years Experience" },
+    { number: 5000, suffix: "+", label: "Patients Treated" },
+    { number: 98, suffix: "%", label: "Patient Satisfaction" }
+  ];
+
   return (
     <div className="bg-gradient-to-b from-teal-50 to-white">
       {/* Hero Section */}
-      <section className="py-20">
+      <section className="py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -54,29 +67,32 @@ function About() {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            {[
-              { number: "15+", label: "Years Experience" },
-              { number: "5,000+", label: "Patients Treated" },
-              { number: "98%", label: "Patient Satisfaction" }
-            ].map((stat, index) => (
-              <div key={index} className="bg-teal-50 p-8 rounded-lg">
-                <div className="text-4xl font-bold text-teal-600 mb-2">{stat.number}</div>
-                <div className="text-gray-600">{stat.label}</div>
+     <section ref={ref} className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          {stats.map((stat, index) => (
+            <div key={index} className="bg-teal-50 p-8 rounded-lg">
+              <div className="text-4xl font-bold text-teal-600 mb-2">
+                {inView ? (
+                  <CountUp end={stat.number} duration={2} suffix={stat.suffix} />
+                ) : (
+                  `0${stat.suffix}`
+                )}
               </div>
-            ))}
-          </div>
+              <div className="text-gray-600">{stat.label}</div>
+            </div>
+          ))}
         </div>
-      </section>
-
+      </div>
+    </section>
       {/* Mission Section */}
-      <section className="py-20">
+      <section className="pt-0 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Our Mission</h2>
-            <p className="text-gray-600 text-center max-w-3xl mx-auto">
+          <div className="bg-teal-50 rounded-xl shadow-lg p-8">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Our 
+              <span className="text-teal-600"> Mission</span>
+              </h2>
+            <p className="text-gray-700 text-lg text-center max-w-3xl mx-auto">
               We are committed to providing personalized, natural healthcare solutions that address 
               the root cause of illness rather than just treating symptoms. Our goal is to help 
               our patients achieve optimal health through gentle, effective homeopathic treatments 
