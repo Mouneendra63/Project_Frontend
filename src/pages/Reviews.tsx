@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Heart } from 'lucide-react';
 import axios from 'axios';
 import { Star, Send } from 'lucide-react';
 import Success from '../components/success';
@@ -128,7 +129,47 @@ function Reviews() {
           </h1>
 
           {loading ? (
-            <p className="text-center text-gray-600 text-lg">Loading reviews...</p>
+            // <p className="text-center text-gray-600 text-lg">Loading reviews...</p>
+            <div className="flex flex-col gap-4 w-full items-center justify-center relative">
+            {/* Spinning Border with Custom Speed */}
+            <div className="w-28 h-28 border-8 border-gray-300 border-t-teal-600 rounded-full custom-spin absolute"></div>
+      
+            {/* Centered Heart with Heartbeat Animation */}
+            <div className="w-28 h-28 flex items-center justify-center">
+              <Heart className="h-10 w-10 text-teal-600 animate-heartbeat" />
+            </div>
+      
+            {/* Custom CSS for animations */}
+            <style jsx>{`
+              @keyframes heartbeat {
+                0%, 100% {
+                  transform: scale(1);
+                  opacity: 1;
+                }
+                50% {
+                  transform: scale(1.2);
+                  opacity: 0.6;
+                }
+              }
+      
+              .animate-heartbeat {
+                animation: heartbeat 1s infinite;
+              }
+      
+              @keyframes slowSpin {
+                0% {
+                  transform: rotate(0deg);
+                }
+                100% {
+                  transform: rotate(360deg);
+                }
+              }
+      
+              .custom-spin {
+                animation: slowSpin 2s linear infinite; /* Change 3s to control speed */
+              }
+            `}</style>
+          </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
               {highRatedRecentReviews.slice(0, 3).map((review, index) => (
