@@ -71,7 +71,7 @@ function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           {stats.map((stat, index) => (
-            <div key={index} className="bg-teal-50 p-8 rounded-lg">
+            <div key={index} className="relative bg-teal-50 p-6 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition duration-300 ease-in-out overflow-hidden">
               <div className="text-4xl font-bold text-teal-600 mb-2">
                 {inView ? (
                   <CountUp end={stat.number} duration={2} suffix={stat.suffix} />

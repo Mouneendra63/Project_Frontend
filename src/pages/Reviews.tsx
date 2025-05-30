@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Heart } from 'lucide-react';
 import axios from 'axios';
 import { Star, Send } from 'lucide-react';
 import Success from '../components/success';
@@ -8,21 +9,35 @@ import { JSX } from 'react/jsx-runtime';
 function ReviewCard({ name, rating, date, comment }: { name: string; rating: number; date: string; comment: string }) {
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
-        <span className="text-sm text-gray-500">{date}</span>
+    <div className="relative bg-white p-6 rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition duration-300 ease-in-out overflow-hidden">
+    {/* Bubbles */}
+    <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-teal-300 rounded-full opacity-40 blur-2xl"></div>
+  
+    <div className="relative z-10">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center font-semibold text-sm ">
+            {name?.charAt(0).toUpperCase()}
+          </div>
+          <h3 className="text-base font-semibold text-gray-900">{name}</h3>
+        </div>
+        <span className="text-xs text-gray-400">{date}</span>
       </div>
-      <div className="flex items-center mb-4">
+  
+      <div className="flex items-center mb-3">
         {[...Array(5)].map((_, i) => (
           <Star
             key={i}
-            className={`h-5 w-5 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+            className={`h-5 w-5 transition-all duration-150 ${
+              i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
+            }`}
           />
         ))}
       </div>
-      <p className="text-gray-600">{comment}</p>
+  
+      <p className="text-gray-600 text-sm leading-relaxed">{comment}</p>
     </div>
+  </div>
   );
 }
 
@@ -114,7 +129,47 @@ function Reviews() {
           </h1>
 
           {loading ? (
-            <p className="text-center text-gray-600 text-lg">Loading reviews...</p>
+            // <p className="text-center text-gray-600 text-lg">Loading reviews...</p>
+            <div className="flex flex-col gap-4 w-full items-center justify-center relative">
+            {/* Spinning Border with Custom Speed */}
+            <div className="w-28 h-28 border-8 border-gray-300 border-t-teal-600 rounded-full custom-spin absolute"></div>
+      
+            {/* Centered Heart with Heartbeat Animation */}
+            <div className="w-28 h-28 flex items-center justify-center">
+              <Heart className="h-10 w-10 text-teal-600 animate-heartbeat" />
+            </div>
+      
+            {/* Custom CSS for animations */}
+            <style jsx>{`
+              @keyframes heartbeat {
+                0%, 100% {
+                  transform: scale(1);
+                  opacity: 1;
+                }
+                50% {
+                  transform: scale(1.2);
+                  opacity: 0.6;
+                }
+              }
+      
+              .animate-heartbeat {
+                animation: heartbeat 1s infinite;
+              }
+      
+              @keyframes slowSpin {
+                0% {
+                  transform: rotate(0deg);
+                }
+                100% {
+                  transform: rotate(360deg);
+                }
+              }
+      
+              .custom-spin {
+                animation: slowSpin 2s linear infinite; /* Change 3s to control speed */
+              }
+            `}</style>
+          </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
               {highRatedRecentReviews.slice(0, 3).map((review, index) => (
