@@ -1,5 +1,5 @@
 
-import React, { useRef ,useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ChevronRight, Calendar, Clock } from 'lucide-react';
 import axios from 'axios';
 import Success from '../components/success';
@@ -22,8 +22,8 @@ function Home() {
         behavior: 'smooth', // For a smooth scrolling animation
         block: 'start',    // Scrolls the element to the top of the viewport
       });
-  }
-};
+    }
+  };
   const addConcern = () => {
     setmedicalConcern([...medicalConcern, ""]);
   };
@@ -142,9 +142,9 @@ function Home() {
 
       {/* Features Section */}
       <section className="pt-5 pb-10 bg-white">
-      <div className="flex items-center justify-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900">Our Core <span className='text-teal-600'>Principles</span> </h2>
-            </div>
+        <div className="flex items-center justify-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-900">Our Core <span className='text-teal-600'>Principles</span> </h2>
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -172,11 +172,11 @@ function Home() {
 
       {/* Consultation Form */}
       <section className="relative pt-10 pb-20 bg-gradient-to-b from-teal-50 to-white overflow-hidden" ref={formRef}>
-      <div className="absolute -top-5 -left-5 w-40 h-40 bg-teal-300 rounded-full opacity-20 "></div>
-  <div className="absolute bottom-20 -right-10 w-36 h-36 bg-teal-300 rounded-full opacity-20 "></div>
-  <div className="absolute -bottom-5 -left-5 w-40 h-40 bg-teal-300 rounded-full opacity-20 "></div>
-  <div className="absolute top-5 right-4 w-36 h-36 bg-teal-300 rounded-full opacity-20 "></div>
-  
+        <div className="absolute -top-5 -left-5 w-40 h-40 bg-teal-300 rounded-full opacity-15 "></div>
+        <div className="absolute bottom-20 -right-10 w-36 h-36 bg-teal-300 rounded-full opacity-15 "></div>
+        <div className="absolute -bottom-5 -left-5 w-40 h-40 bg-teal-300 rounded-full opacity-25 "></div>
+        <div className="absolute top-5 right-4 w-36 h-36 bg-teal-300 rounded-full opacity-15 "></div>
+
 
         {alertComponent && (
           <div className="fixed top-5 right-5 z-50">
@@ -189,7 +189,7 @@ function Home() {
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2" >Full Name</label>
                   <input
                     type="text"
                     value={name}
